@@ -1,0 +1,71 @@
+.ui-autocomplete{
+	top: 97px;
+    left: 406px;
+}
+.ui-helper-hidden-accessible{
+	padding: 5;
+	display: block;
+}
+.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
+    text-align: center;
+    left: 0;
+    margin: 0 auto;
+    width: 50% !important;
+    list-style-type: none;
+    background: #ececec;
+    padding: 0;
+    position: relative;
+    top: -106px;
+    border:2px solid #ececec;
+}
+.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all li a{
+	color: #fff;
+    background: #353b48;
+    display: block;
+    padding: 13px;
+	text-align: right;	
+	cursor: pointer;
+	border-bottom: 2px solid #ececec;
+	text-decoration: none;
+}
+.ui-widget-content.ui-corner-all li a:hover{
+	background-color:#191f29 !important;
+}
+.ui-widget-content.ui-corner-all li a:focus-within{
+	background-color:#191f29 !important;
+
+}
+.ui-widget-content.ui-corner-all li a:focus{
+	background-color:#191f29 !important;
+
+}
+.ui-state-focus{
+	background-color: #191f29 !important;
+}
+.steps{
+    margin: 0 auto !important;
+}
+.steps p{
+    line-height: 1.8;
+
+}
+form{
+    outline: 5px solid #25354673!important;
+}
+.ui-helper-hidden-accessible{
+    background: #e84118;
+    color: #fff;
+    display: none;
+}
+.DropStation_Box{
+    display: none
+}
+#GoToDropStation{
+    cursor: pointer;
+}
+.steps{
+    display: none;
+}
+.steps h5{
+    line-height: 1.8;
+}

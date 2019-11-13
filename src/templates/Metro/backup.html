@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 mt-5 p-3 pt-5 pb-5 border-routet border bg-light shadow text-center overflow-hidden">
+          {% if current_station == None %}
+            {% if messages %}
+              {% for messages in message %}
+                <div class="p-3 border radius alert-{{message.tags}}">
+                  {{message}}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% else %}
+            {% if TransferStation == 'None' %}
+            <div class="col-sm-8 bg-white p-5  border steps shadow">
+                <p>
+                الأول روح على شباك التذاكر أقطع تذكرة بـ<b> {{TicketPrice}} جنيه</b>
+                  <br/>
+                  دلوقتي انت واقف في <b>{{current_station}}</b> أركب من عندك القطر المتجهة إلي <b>{{FirstDir}}</b>
+                  بعد ما تركب القطر هتعد عدد <b>{{StationsCounts}} محطة</b> بما فيهم المحطة اللي هتركب منها وبكدة انت وصلت <b>{{drop_station}} بالسلامة</b>
+                </p>
+              </div>  
+            {% else %}
+            <div class="col-sm-8 bg-white p-5 border steps shadow">
+                <p>
+                الأول روح على شباك التذاكر أقطع تذكرة بـ<b> {{TicketPrice}} جنيه</b>
+                  <br/>
+                  دلوقتي انت واقف في <b>{{current_station}}</b> أركب من عندك القطر المتجهة إلي <b>{{FirstDir}}</b>
+                  <br/>
+                  وأنزل في محطة <b>{{TransferStation}}</b> وبعد كدة اركب القطر المتجهة إلي <b>{{SecDir}}</b> و أنزل في محطة <b>{{drop_station}}</b> 
+                  <br />
+                  <br />
+                  ملحوظة :: انت عشان توصل لـ <span>{{drop_station}} محطة</span> هتعدي على <span>{{StationsCounts}} محطة</span> فا أعمل حسابك ان الطريق <span>:"D هيطول</span> 
+                  <br>
+                  <b>,توصل بالسلامة</b>
+                </p>
+              </div>  
+            {% endif %}
+          {% endif %}
+            <form action="" method="POST" class='bg-light mt-5 '>
+                {% csrf_token %}
+                <div class="ui-widget"> 
+                {{ form }}
+                </div>
+                <input type="submit" value="تم" class="btn btn-primary col-sm-4 p-2 m-2">
+            </form>  
+        
+        </div>    
+    </div>
+  </div>

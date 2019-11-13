@@ -1,0 +1,99 @@
+{% extends 'Metro/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 ">
+      <img src="" alt="">
+        {% if current_station == None %}
+          <form action="" method="POST" class='p-5  shadow  text-center bg-dark  mt-5 '>
+            {% csrf_token %}
+            <div class="CurrentStation_Box">
+                <h3 class='mb-5 text-white'>إية هي المحطة اللي هتركب منها ؟</h3>
+                <div class="ui-widget"> 
+                    {{ form.CurrentStation }}
+                </div>
+                <span id='GoToDropStation' class="rounded-0 btn btn-secondary col-sm-4 p-2 m-2">التالي</span>        
+            </div>
+            <div class="DropStation_Box">
+                <h3 class='mb-5 text-white'>عايز تروح لمحطة إية؟</h3>
+                <div class="ui-widget"> 
+                    {{ form.DropStation }}
+                </div>
+                <input type="submit" value="تم" class="rounded-0 btn btn-primary col-sm-4 p-2 m-2">
+              </div>
+              <div class="ui-helper-hidden-accessible col-sm-12 p-3 mt-5 border">
+                  مفيش محطة بالأسم دة يستحسن تكتب اول حرفين وتختار من الإقتراحات اللي بنقدمهالك
+              </div>
+          </form>  
+        {% else %}
+        <div class='p-5  shadow  bg-white border shadow text-right mt-5 '>
+            {% if TransferStation == 'None' %}
+              <table class="table table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">هتنزل في</th>
+                      <th>هتعدي على</th>
+                      <th scope="col">هتركب القطر المتجهة إلي</th>
+                      <th scope="col">هتشتري تذكرة بـ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{drop_station}}</td>
+                      <td>محطة {{StationsCounts}}</td>
+                      <td>{{FirstDir}} من {{current_station}}</td>
+                      <th scope="row">{{TicketPrice}} جنيه</th>
+                    </tr>
+                  </tbody>
+                </table>
+              <a class="d-block p-5" id="ToggleBtn" href="#Toggle"><h3>لتوضيح أكتر دوس هنا</h3></a>   
+              <div class="col-sm-12 p-5 steps ">
+                  <h4 class="mb-3">مبدائيًا هتروح على شباك التذاكر وتقطع تذكرة بـ {{TicketPrice}} جنيه</h4>
+                  <h5 class="p-3">عشان تروح لمحطة {{drop_station}} هتاخد من عندك القطر اللي رايح على {{FirstDir}}
+                    ولو عندك الوقت الفاضي انك تعد {{StationsCounts}} محطة عدهم واول ما توصل للمحطة رقم {{StationsCounts}} 
+                    هتكون وصلت محطة {{drop_station}} بالسلامة
+                  </h5>
+                </div>  
+                <a href="{% url 'home' %}" class="rounded-0 btn btn-primary col-sm-4 p-2 m-2">الصفحة الرئيسية</a>
+            {% else %}
+            <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">القطر اللي رايح {{SecDir}}</th>
+                    <th scope="col">اركب من {{TransferStation}}</th>
+                    <th scope="col">هتنزل محطة</th>
+                    <th scope="col">هتركب القطر المتجهة إلي</th>
+                    <th scope="col">هتشتري تذكرة بـ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>هو اللي هيوديك {{drop_station}}</td>
+                    <td>{{SecDir}}</td>
+                    <td>{{TransferStation}}</td>
+                    <td>{{FirstDir}} من {{current_station}}</td>
+                    <th scope="row">{{TicketPrice}} جنيه</th>
+                  </tr>
+                </tbody>
+              </table>            
+            <a class="d-block p-5" id="ToggleBtn" href="#Toggle"><h3>لتوضيح أكتر دوس هنا</h3></a>   
+            <div class="col-sm-12 p-5 steps ">
+              <h4 class="mb-3">مبدائيًا هتروح على شباك التذاكر وتقطع تذكرة بـ {{TicketPrice}} جنيه</h4>
+              <h5>
+                عشان تروح {{drop_station}} اولاً هتركب من {{current_station}} 
+                القطر اللي رايح على اتجاهة {{FirstDir}} وانت راكب القطر دة هتعدي على محطة {{TransferStation}}
+                انزل فيها بعد كدة اركب القطر اللي رايح على  {{SecDir}} 
+                القطر دة اللي هيعدي على المحطة اللي انت نازل فيها اللي هي {{drop_station}}
+              </h5>
+              </div>
+              <a href="{% url 'home' %}" class="rounded-0 btn btn-primary col-sm-4 p-2 m-2">الصفحة الرئيسية</a>
+            {% endif %}
+            <div class="col-sm-12 bg-dark text-white p-5">
+              <b>ملحوظة : </b> لو أنت من ذوي الأحتياجات الخاصة لما تيجي تقطع التذكرة أقطعها بنص جنيه بس خد بالك لازم يكون معاك كارنيه التضامن الأجتماعي 
+            </div>
+        </div>
+        {% endif %}
+      </div>
+  </div>
+</div>
+{% endblock content %}
